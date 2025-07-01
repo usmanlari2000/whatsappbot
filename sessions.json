@@ -1,0 +1,97 @@
+{
+  "+923211681128": {
+    "history": [
+      {
+        "role": "user",
+        "content": "Hey",
+        "timestamp": 1751368615.4091973
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I assist you with your HR-related queries today?",
+        "timestamp": 1751368624.7759056
+      },
+      {
+        "role": "user",
+        "content": "Hello",
+        "timestamp": 1751369151.8688173
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I assist you with your HR-related queries at PITB?",
+        "timestamp": 1751369155.779664
+      },
+      {
+        "role": "user",
+        "content": "Hello",
+        "timestamp": 1751369254.5593805
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I assist you with your HR-related queries at PITB?",
+        "timestamp": 1751369258.5670915
+      },
+      {
+        "role": "user",
+        "content": "tell me about provident fund.",
+        "timestamp": 1751369436.3431017
+      },
+      {
+        "role": "assistant",
+        "content": "The Provident Fund (PF) is a savings scheme that ensures employees' contributions are processed smoothly. Once your PF status is activated in the HRIS, you will receive an automated email with instructions. You need to complete the form, upload the affidavit, and fill out a survey by the specified deadline. For assistance, you can contact the HR Operations team.",
+        "timestamp": 1751369443.168804
+      },
+      {
+        "role": "user",
+        "content": "Hello",
+        "timestamp": 1751369657.5701592
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I assist you today?",
+        "timestamp": 1751369659.7404108
+      },
+      {
+        "role": "user",
+        "content": "Give python code.",
+        "timestamp": 1751369671.30555
+      },
+      {
+        "role": "assistant",
+        "content": "I'm unable to assist with that. Please let me know if you have any questions related to PITB HR.",
+        "timestamp": 1751369673.4269922
+      },
+      {
+        "role": "user",
+        "content": "Hello",
+        "timestamp": 1751369897.019586
+      },
+      {
+        "role": "assistant",
+        "content": "How can I assist you with HR-related queries?",
+        "timestamp": 1751369900.6286352
+      },
+      {
+        "role": "user",
+        "content": "Hello",
+        "timestamp": 1751370076.3234062
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I assist you today regarding HR services?",
+        "timestamp": 1751370079.1790333
+      },
+      {
+        "role": "user",
+        "content": "Give python code",
+        "timestamp": 1751370091.9709547
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but I can only assist with queries related to HR processes at the Punjab Information Technology Board (PITB). If you have a question about Provident Fund enrollment or related topics, feel free to ask!",
+        "timestamp": 1751370094.2223494
+      }
+    ],
+    "last_seen": 1751370091.9709547
+  }
+}

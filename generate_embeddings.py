@@ -33,15 +33,13 @@ Self-Service Portal: Access personal information, leave requests, payslips, bene
 • HR Contact: For complex queries or issues not resolved via self-service."""
 ]
 
-model = SentenceTransformer("BAAI/bge-large-en-v1.5")
+model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
-processed_data = [f"Represent the document for retrieval: {chunk}" for chunk in data]
-
-embeddings = model.encode(processed_data, normalize_embeddings=True)
+embeddings = model.encode(data, normalize_embeddings=True)
 
 output_data = [{"text": data[i], "embedding": embeddings[i].tolist()} for i in range(len(data))]
 
-output_path = "bge_embeddings.json"
+output_path = "minilm_embeddings.json"
 
 with open(output_path, "w") as f:
     json.dump(output_data, f, indent=2)

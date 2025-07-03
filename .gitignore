@@ -1,2 +1,3 @@
 .env
 minilm_embeddings.json
+generate_embeddings.py

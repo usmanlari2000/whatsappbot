@@ -33,7 +33,7 @@ Self-Service Portal: Access personal information, leave requests, payslips, bene
 • HR Contact: For complex queries or issues not resolved via self-service."""
 ]
 
-model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+model = SentenceTransformer("paraphrase-MiniLM-L6-v2")
 
 embeddings = model.encode(data, normalize_embeddings=True)
 

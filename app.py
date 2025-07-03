@@ -10,6 +10,7 @@ import time
 from openai import OpenAI
 
 load_dotenv()
+
 app = Flask(__name__)
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -31,6 +32,7 @@ sessions_collection = db["sessions"]
 def whatsapp_bot():
     user_input = request.values.get("Body", "").strip()
     user_phone_number = request.values.get("From", "").replace("whatsapp:", "")
+    
     current_time = time.time()
 
     if not employees_collection.find_one({"phone_number": user_phone_number}):
@@ -38,15 +40,17 @@ def whatsapp_bot():
         twilio_response.message(
             "Sorry, your phone number isn't registered to any employee. Please try contacting me using a registered phone number."
         )
+        
         return str(twilio_response)
 
     if len(user_input.split()) > 200:
         twilio_response = MessagingResponse()
         twilio_response.message("Your message is too long.")
+        
         return str(twilio_response)
 
-    # Fetch or initialize session
     session = sessions_collection.find_one({"phone_number": user_phone_number})
+    
     if not session:
         session = {"phone_number": user_phone_number, "history": [], "last_seen": current_time}
         sessions_collection.insert_one(session)
@@ -60,7 +64,7 @@ def whatsapp_bot():
     scores = np.dot(doc_embeddings, embedded_query)
     top_indices = np.argsort(scores)[-3:][::-1]
     top_matches = [" ".join(doc_texts[i].split()[:400]) for i in top_indices]
-    combined_context = "\n------------\n".join(top_matches)
+    context = "\n------------\n".join(top_matches)
 
     system_prompt = (
         "You are an assistant responsible for answering employee queries at the Punjab Information Technology Board (PITB). "
@@ -77,7 +81,7 @@ def whatsapp_bot():
 
     message_history = [
         {"role": "system", "content": system_prompt},
-        {"role": "system", "content": f"Context:\n{combined_context}"},
+        {"role": "system", "content": f"Context:\n{context}"},
         {"role": "system", "content": f"History:\n{text_history}"},
         {"role": "user", "content": user_input}
     ]
@@ -85,7 +89,7 @@ def whatsapp_bot():
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=message_history,
-        temperature=0.3,
+        temperature=1,
     )
     answer = response.choices[0].message.content
 
@@ -100,6 +104,7 @@ def whatsapp_bot():
 
     twilio_response = MessagingResponse()
     twilio_response.message(answer)
+    
     return str(twilio_response)
 
 if __name__ == "__main__":

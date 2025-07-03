@@ -15,13 +15,13 @@ app = Flask(__name__)
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2-quantized")
 
 with open("minilm_embeddings.json", "r") as f:
     documents = json.load(f)
 
 doc_texts = [doc["text"] for doc in documents]
-doc_embeddings = np.array([doc["embedding"] for doc in documents])
+doc_embeddings = np.array([doc["embedding"] for doc in documents], dtype=np.float32)
 
 mongo_client = MongoClient(os.getenv("MONGODB_URI"))
 db = mongo_client["acme"]
@@ -108,4 +108,5 @@ def whatsapp_bot():
     return str(twilio_response)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)

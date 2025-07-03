@@ -3,11 +3,11 @@ from flask import Flask, request
 import os
 import numpy as np
 from pymongo import MongoClient
+from functools import lru_cache
 from twilio.twiml.messaging_response import MessagingResponse
 import time
 from openai import OpenAI
 from sentence_transformers import SentenceTransformer
-from functools import lru_cache
 
 load_dotenv()
 
@@ -25,14 +25,15 @@ embeddings_collection = db["embeddings"]
 def get_model():
     return SentenceTransformer("paraphrase-MiniLM-L6-v2")
 
-@app.route("/whatsapp", methods=["POST"])
+@app.route("/", methods=["POST"])
 def whatsapp_bot():
     user_input = request.values.get("Body", "").strip()
     user_phone_number = request.values.get("From", "").replace("whatsapp:", "")
+    
     current_time = time.time()
 
     if not employees_collection.find_one({"phone_number": user_phone_number}):
-        return _reply("Sorry, your phone number isn't registered with any employee.")
+        return _reply("Sorry, I can't help you. Your phone number isn't registered with any employee. Please try contacting me using a registered phone number.")
 
     if len(user_input.split()) > 200:
         return _reply("Your message is too long.")

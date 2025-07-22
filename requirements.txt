@@ -1,0 +1,7 @@
+flask
+twilio
+python-dotenv
+openai
+pymongo
+sentence-transformers
+numpy

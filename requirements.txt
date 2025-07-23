@@ -5,3 +5,4 @@ openai
 pymongo
 sentence-transformers
 numpy
+waitress
